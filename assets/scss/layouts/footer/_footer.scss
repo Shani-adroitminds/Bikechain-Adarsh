@@ -1,0 +1,330 @@
+// =============================================================================
+// FOOTER (CSS)
+// =============================================================================
+
+
+// Layout and columns
+// -----------------------------------------------------------------------------
+//
+// 1. To enable the grid's display: inline-block; to work properly, we need to
+//    remove the white-space that it creates between columns with font-size: 0;
+// 2. Re-set the font-size that was reduced to 0 in point 1 for children.
+// 3. Fix for text flickers on windows devices
+//
+// -----------------------------------------------------------------------------
+
+.footer {
+    background-color: $footer-background;
+    border-top: container("border");
+    padding: 3.5rem 0 0;
+    position: relative;
+    @include breakpoint("medium") {
+        padding: 7.6rem 0 0;
+    }
+    .footer-logo{
+        margin-bottom: 14px;
+    }
+    .chat-bot{
+        position: fixed;
+        bottom: 2%;
+        right: 5%;
+        z-index: 99999;
+        cursor: pointer;
+        @media screen and (max-width: 551px){
+            img{
+                width: 66%;
+                float: right;
+            }
+        }
+    }
+}
+
+.footer-title-sr-only {
+    height: 1px;
+    left: -10000px;
+    overflow: hidden;
+    position: absolute;
+    top: auto;
+    width: 1px;
+}
+
+.footer-info {
+    @include grid-row($behavior: nest);
+    font-size: 0; // 1
+    margin-bottom: 3.5rem;
+    @media screen and (max-width: 801px) {
+        margin-bottom: 30px;
+    }
+    @media screen and (max-width: 801px) {
+        article:nth-child(2){
+            margin-top: 2rem;
+        }
+    }
+    @include breakpoint("medium") {
+        margin-bottom: 0;
+    }
+}
+
+.footer-info-col {
+    @include grid-column(12);
+    color: stencilColor("color-white");
+    display: inline-block;
+    float: none;
+    font-size: 16px; // 2
+    margin-bottom: 0;
+    overflow-wrap: break-word;
+    text-align: left;
+    vertical-align: top;
+    // TODO: specifically use vendor only for IE11 since overflow-wrap is not supported here
+    -ms-word-break: break-all;
+    @media screen and (max-width: 767px) {
+        margin-bottom: 0;
+    }
+    @include breakpoint("small") {
+        width: width("6/12");
+        
+    }
+
+    @include breakpoint("medium") {
+        width: width("4/12");
+        margin-bottom: spacing("double");
+    }
+
+    > :first-child {
+        margin-top: 0;
+    }
+
+}
+
+.footer-info-col--small {
+    @include breakpoint("medium") {
+        width: width("2/12");
+    }
+}
+
+.footer-info-col--social {
+    width: 100%;
+}
+
+.footer-info-col--left {
+    @include breakpoint("small") {
+        padding: 0;
+    }
+}
+
+.footer-info-col--right {
+    @include breakpoint("small") {
+        left: 50%;
+        position: inherit;
+        width: 50%;
+    }
+
+    @include breakpoint("medium") {
+        left: 0;
+        padding: 0;
+        text-align: right;
+        width: 100%;
+    }
+}
+
+
+// Content
+// -----------------------------------------------------------------------------
+
+.footer-info-heading {
+    color: $footer-heading-fontColor;
+    font-size: 16px;
+    text-transform: inherit;
+    font-weight: 700;
+    line-height: 32px;
+    margin-bottom: 10px;
+    img{
+        display: none;
+    }
+    @media screen and (max-width: 550px) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        img{
+            display: block;
+        }
+    }
+    .rotate {
+        transform: rotate(180deg);
+        transition: transform 0.3s ease;
+    }
+    @include breakpoint("medium") {
+     font-size: 20px;
+     margin-bottom: 14px;
+    }
+}
+.footer-menu-title{
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    @include breakpoint("small") {
+        font-size: 18px;
+    }
+
+}
+.footer-info-list {
+    list-style: none;
+    margin-left: 0;
+    margin-bottom: 48px;
+    @media screen and (max-width: 550px) {
+        display: none;
+        margin-bottom: 32px;
+        overflow: hidden;
+    }
+
+    a {
+        color: stencilColor("color-white");
+        text-decoration: none;
+        font-weight: 400;
+
+        &:hover {
+            color: stencilColor("color-white");
+        }
+    }
+    li{
+        margin-bottom: 10px;
+    }
+    @media screen and (max-width: 551px){
+        display: none;
+    }
+
+}
+
+.footer-copyright {
+    text-align: center;
+
+    @include breakpoint("small") {
+        text-align: left;
+    }
+
+    > .powered-by {
+        color: stencilColor("color-white");
+        font-size: 16px;
+        margin: 0;
+    }
+
+    > .paypal-credit {
+        color: stencilColor("color-textSecondary");
+        font-size: fontSize("tiny");
+        margin: 1em 0 2em;
+    }
+
+    a {
+        color: stencilColor("color-textSecondary");
+        text-decoration: none;
+
+        &:hover {
+            color: stencilColor("color-textSecondary--hover");
+        }
+    }
+}
+
+.footer-payment-icons {
+    height: remCalc(40);
+    margin-top: spacing("single");
+
+    @include breakpoint("medium") {
+        margin-top: spacing("double");
+    }
+
+    .footer-payment-icon {
+        height: 100%;
+        margin: spacing("quarter");
+        vertical-align: middle;
+        width: remCalc(50);
+    }
+
+    svg {
+        fill: stencilColor("icon-color");
+    }
+}
+
+.footer-newsletter-summary {
+    text-align: left;
+}
+.footer-col-one{
+    max-width: 483px;
+    padding-right: 1rem;
+    .footer-description{
+        text-align: justify;
+        @media screen and (max-width: 767px) {
+            font-size: 14px;
+        }
+    }
+}
+#nl_email{
+    height: 56px;
+    border-radius: 30px;
+    outline: none;
+    padding-right: 4rem;
+    @include breakpoint("medium") {
+        height: 64px;
+    }
+    &::placeholder{
+        font-size: 16px;
+    }
+    &:focus{
+        outline: none !important;
+    }
+}
+.subscribe-wrapper{
+    position: relative;
+    margin-top: 8px;
+    .subscribe-send-btn{
+        outline: none;
+        background: transparent;
+        border: none;
+        position: absolute;
+        right: 1%;
+        top: 18%;
+        margin-top: 0;
+    }
+}
+.social-icons a{
+    padding-right: 10px;
+    &:last-of-type{
+        padding-left:3px;
+    }
+}
+.form{
+    margin-bottom: 0;
+}
+.footer-bottom{
+    padding-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+    @include breakpoint("small") {
+        flex-direction: row;
+        gap: 0;
+    }
+    .payment-methods {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        img{
+            padding-right: 19px;
+        }
+    }
+}
+.footer-bottom-line{
+    display: block;
+    @media screen and (max-width: 767px) {
+        display: none;
+    }
+}
+
+#consent-manager-update-banner {
+    display: none;
+}
+
+.newsletter-sendColor {
+    fill: stencilColor('footer-newsletterSendColor');
+}

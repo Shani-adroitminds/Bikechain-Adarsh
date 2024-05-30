@@ -1,0 +1,39 @@
+<form class="form" action="{{urls.subscribe.action}}" method="post">
+    <fieldset class="form-fieldset">
+        <input type="hidden" name="action" value="subscribe">
+        <input type="hidden" name="nl_first_name" value="bc">
+        <input type="hidden" name="check" value="1">
+        <div class="form-field">
+            <label class="form-label is-srOnly" for="nl_email">{{lang 'common.email_address'}}</label>
+            <div class="form-prefixPostfix wrap subscribe-wrapper">
+                <input class="form-input"
+                       id="nl_email"
+                       name="nl_email"
+                       type="email"
+                       value="{{customer.email}}"
+                       placeholder="{{lang 'newsletter.email_placeholder'}}"
+                       aria-describedby="alertBox-message-text"
+                       aria-required="true"
+                       required
+                >
+                <button class="form-prefixPostfix-button--postfix subscribe-send-btn"
+                       type="submit"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <g clip-path="url(#clip0_388_7244)">
+                      <path class="newsletter-sendColor" fill-rule="evenodd" clip-rule="evenodd" d="M29.9847 10.0176L8.998 17.606L15.9897 21.6526L22.1547 15.486C22.4674 15.1735 22.8915 14.998 23.3336 14.9981C23.7757 14.9983 24.1996 15.1741 24.5122 15.4868C24.8247 15.7995 25.0002 16.2236 25 16.6657C24.9998 17.1078 24.8241 17.5318 24.5113 17.8443L18.3447 24.011L22.3947 31.001L29.9847 10.0176ZM30.523 6.27763C32.5147 5.55596 34.4447 7.48596 33.723 9.47763L24.9197 33.8193C24.1963 35.816 21.4697 36.0593 20.4047 34.221L15.043 24.9576L5.77966 19.596C3.94133 18.531 4.18466 15.8043 6.18133 15.081L30.523 6.27763Z" fill="#FF0E49"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_388_7244">
+                        <rect width="40" height="40" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </button>
+            </div>
+            {{#if settings.show_newsletter_summary }}
+                <div class="footer-newsletter-summary">{{settings.newsletter_summary}}</div>
+            {{/if}}
+        </div>
+    </fieldset>
+</form>

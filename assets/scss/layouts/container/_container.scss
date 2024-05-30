@@ -1,0 +1,48 @@
+// =============================================================================
+// GRID (CSS)
+// =============================================================================
+
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    padding: 0 $container-padding;
+    position: relative;
+    width: layout("fixed");
+
+    @include breakpoint("large") {
+        padding: 0 ($container-padding * 4);
+        max-width: 90%;
+    }
+    @include breakpoint("xlarge") {
+        max-width: 1440px;
+    }
+}
+header {
+    .fullwidth-container{
+        @media screen and (max-width: 800px) {
+            background-color: #FFFFFF;
+        }
+    }
+}
+.fullwidth-container{
+    // max-width: 100%;
+    max-width: 1744px;
+  
+    @media (min-width:1900px) {
+        padding-inline:0px !important;
+    }
+    // @include breakpoint("xlarge"){
+    //     // max-width: 1920px;
+    //     margin: 0 auto;
+    // }
+}
+footer{
+    @include breakpoint("xlarge") {
+        .container{
+            padding: unset !important;
+            max-width: 1744px;
+        }
+    }
+}

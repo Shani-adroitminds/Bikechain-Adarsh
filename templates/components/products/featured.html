@@ -1,0 +1,48 @@
+<h2 class="page-heading mb-40">{{lang 'products.featured' }}</h2>
+
+<div class="featured-product-tabs mb-40">
+    <div class="tabs-container">
+            <a href="#" class="tab-item" data="new-arrivals">New Arrivals</a>
+            <a href="#" class="tab-item">Best Sellers</a>
+            <a href="#" class="tab-item">On Sale</a>
+    </div>
+    <div class="card-view-all-products">
+        <a href="">View all products</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+            <path d="M2 2L6 6L2 10" stroke="#08213E" stroke-width="2" stroke-linecap="square"/>
+        </svg>
+    </div>
+</div>
+
+<ul class="productGrid featured-products">
+    <div class="new-products">
+        {{#each productsnew}}
+            <li class="products">
+                    {{>components/products/card}}
+            </li>
+        {{/each}}
+    </div>
+    <div class="products-top-sellers">
+        {{#each productstopsellers}}
+            <li class="products">
+                    {{>components/products/card}}
+            </li>
+        {{/each}}
+    </div>
+    <div class="products-on-sale">
+        {{#each productsonsale}}
+            <li class="products">
+                    {{>components/products/card}}
+            </li>
+        {{/each}}
+    </div>
+    <div class="progress-bar-container">
+        <svg width="6" height="10" viewBox="0 0 4 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 5L1 3L3 1" stroke="#08213E" stroke-linecap="square"/>
+        </svg>
+        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+        <svg width="6" height="10" viewBox="0 0 4 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L3 3L1 5" stroke="#08213E" stroke-linecap="square"/>
+        </svg>           
+    </div>
+</ul>

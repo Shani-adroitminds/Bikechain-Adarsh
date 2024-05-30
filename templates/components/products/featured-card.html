@@ -1,0 +1,141 @@
+<article
+data-entity-id="{{id}}"
+    class="card
+    {{#if alternate}} card--alternate{{/if}}"
+    data-test="card-{{id}}"
+    {{#if settings.data_tag_enabled}}
+        data-event-type="{{event}}"
+        data-entity-id="{{id}}"
+        data-position="{{position}}"
+        data-name="{{name}}"
+        data-product-category="
+        {{#each category}}
+            {{#if @last}}
+                {{this}}
+            {{else}}
+                {{this}},
+            {{/if}}
+        {{/each}}"
+        data-product-brand="{{brand.name}}"
+        data-product-price="
+        {{#or customer (unless theme_settings.restrict_to_login)}}
+            {{#if price.with_tax}}
+                {{price.with_tax.value}}
+            {{else}}
+                {{price.without_tax.value}}
+            {{/if}}
+        {{else}}
+            {{lang 'common.login_for_pricing'}}
+        {{/or}}"
+    {{/if}}>
+    <figure class="card-figure">
+
+        {{#if custom_fields}}
+            {{#each custom_fields}}
+                {{#if name '===' "Promo Text"}}
+                <p class="cf-badge manrope">{{value}}</p>
+                {{/if}}
+            {{/each}}
+        {{/if}}
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M13.9988 24.1926L12.3748 22.7366C10.4895 21.038 8.93083 19.5726 7.69883 18.3406C6.46683 17.1086 5.48683 16.0026 4.75883 15.0226C4.03083 14.0426 3.52216 13.142 3.23283 12.3206C2.94349 11.4993 2.79883 10.6593 2.79883 9.80062C2.79883 8.04596 3.38683 6.58062 4.56283 5.40462C5.73883 4.22862 7.20416 3.64062 8.95883 3.64062C9.92949 3.64062 10.8535 3.84596 11.7308 4.25662C12.6082 4.66729 13.3642 5.24596 13.9988 5.99262C14.6335 5.24596 15.3895 4.66729 16.2668 4.25662C17.1442 3.84596 18.0682 3.64062 19.0388 3.64062C20.7935 3.64062 22.2588 4.22862 23.4348 5.40462C24.6108 6.58062 25.1988 8.04596 25.1988 9.80062C25.1988 10.6593 25.0542 11.4993 24.7648 12.3206C24.4755 13.142 23.9668 14.0426 23.2388 15.0226C22.5108 16.0026 21.5308 17.1086 20.2988 18.3406C19.0668 19.5726 17.5082 21.038 15.6228 22.7366L13.9988 24.1926ZM13.9988 21.1686C15.7908 19.5633 17.2655 18.1866 18.4228 17.0386C19.5802 15.8906 20.4948 14.892 21.1668 14.0426C21.8388 13.1933 22.3055 12.4373 22.5668 11.7746C22.8282 11.112 22.9588 10.454 22.9588 9.80062C22.9588 8.68062 22.5855 7.74729 21.8388 7.00062C21.0922 6.25396 20.1588 5.88062 19.0388 5.88062C18.1615 5.88062 17.3495 6.12796 16.6028 6.62262C15.8562 7.11729 15.3428 7.74729 15.0628 8.51262H12.9348C12.6548 7.74729 12.1415 7.11729 11.3948 6.62262C10.6482 6.12796 9.83616 5.88062 8.95883 5.88062C7.83883 5.88062 6.90549 6.25396 6.15883 7.00062C5.41216 7.74729 5.03883 8.68062 5.03883 9.80062C5.03883 10.454 5.16949 11.112 5.43083 11.7746C5.69216 12.4373 6.15883 13.1933 6.83083 14.0426C7.50283 14.892 8.41749 15.8906 9.57483 17.0386C10.7322 18.1866 12.2068 19.5633 13.9988 21.1686Z" fill="black" stroke="white" stroke-width="0.5"/>
+          </svg>
+        {{#if stock_level '===' 0}}
+            {{#if theme_settings.pdp_sold_out_label '===' ''}}
+                {{> components/products/product-badge
+                    badge-type='sold-out'
+                    badge_view=theme_settings.product_sold_out_badges
+                    badge_label=(lang "page_builder.pdp_sold_out_label")
+                }}
+            {{else}}
+                {{> components/products/product-badge
+                    badge-type='sold-out'
+                    badge_view=theme_settings.product_sold_out_badges
+                    badge_label=theme_settings.pdp_sold_out_label
+                }}
+            {{/if}}
+        {{else}}
+            {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
+                {{#if theme_settings.pdp_sale_badge_label '===' ''}}
+                    {{> components/products/product-badge
+                        badge-type='sale'
+                        badge_view=theme_settings.product_sale_badges
+                        badge_label=(lang "page_builder.pdp_sale_badge_label")
+                    }}
+                {{else}}
+                    {{> components/products/product-badge
+                        badge-type='sale'
+                        badge_view=theme_settings.product_sale_badges
+                        badge_label=theme_settings.pdp_sale_badge_label
+                    }}
+                {{/if}}
+            {{/or}}
+        {{/if}}
+
+        <a href="{{url}}"
+           class="card-figure__link"
+           aria-label="{{> components/products/product-info}}"
+           {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+        >
+            <div class="card-img-container">
+                {{#and (if position '<=' 6) (if loading_eager_first '===' 'true') }}
+                {{> components/common/responsive-img
+                    image=image
+                    class="card-image"
+                    fallback_size='270w'
+                    default_image=theme_settings.default_image_product
+                    loading='eager'
+                    fetchpriority='high'
+                    sizes='270px'
+                }}
+                {{else}}
+                {{> components/common/responsive-img
+                    image=image
+                    class="card-image"
+                    fallback_size='270w'
+                    default_image=theme_settings.default_image_product
+                    sizes='270px'
+                }}
+                {{/and}}
+            </div>
+        </a>
+
+    </figure>
+    <div class="card-body">
+        {{#and rating show_rating}}
+            <p class="card-text" data-test-info-type="productRating">
+                <span class="rating--small">
+                    {{> components/products/ratings rating_target=name rating=rating}}
+                </span>
+            </p>
+        {{/and}}
+        {{#if brand.name}}
+            <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
+        {{/if}}
+        <h3 class="card-title">
+            <a aria-label="{{> components/products/product-info}}"
+               href="{{url}}"
+               {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+            >
+                {{name}}
+            </a>
+        </h3>
+        <p class="manrope">Alpine Stars</p>
+        <div class="product-options-wrapper">
+        </div>
+        <div class="card-text {{#if price.non_sale_price_with_tax}}pdt-card-nonsale-price{{/if}}" data-test-info-type="price">
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                {{> components/products/price price=price}}
+            {{else}}
+                {{> components/common/login-for-pricing}}
+            {{/or}}
+        </div>
+        {{> components/products/bulk-discount-rates}}
+        <div class="card-shop-now">
+            <a href="{{url}}">shop now <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 16px;" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                <path d="M2 2L6 6L2 10" stroke="white" stroke-width="2" stroke-linecap="square"/>
+              </svg></a>
+        </div>
+    </div>
+</article>

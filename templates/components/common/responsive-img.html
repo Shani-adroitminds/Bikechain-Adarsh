@@ -1,0 +1,83 @@
+{{#if lazyload}}
+{{assignVar 'lazyloadmode' lazyload}}
+{{else if theme_settings.lazyload_mode}}
+{{assignVar 'lazyloadmode' theme_settings.lazyload_mode}}
+{{else if ../theme_settings.lazyload_mode}}
+{{assignVar 'lazyloadmode' theme_settings.lazyload_mode}}
+{{/if}}
+
+{{#if (isString sizes) '===' false}}
+{{assignVar 'responsiveSizes' (get 'string' sizes)}}
+{{else if sizes}}
+{{assignVar 'responsiveSizes' sizes}}
+{{else}}
+{{assignVar 'responsiveSizes' 'auto'}}
+{{/if}}
+
+{{#all (if (occurrences (getVar 'responsiveSizes') ',') '===' 0) (if (occurrences (getVar 'responsiveSizes') 'p') '===' 1)}}
+{{assignVar 'responsive1x' (get 'string' (concat (first (split (getVar 'responsiveSizes') 'p')) 'w'))}}
+{{else}}
+{{assignVar 'responsive1x' '-'}}
+{{/all}}
+
+
+{{#if loading}}
+{{assignVar 'responsiveLoading' loading}}
+{{else if (getVar 'lazyloadmode') '===' 'lazyload'}}
+{{assignVar 'responsiveLoading' 'lazy'}}
+{{else if (getVar 'lazyloadmode') '===' 'lazyload+lqip'}}
+{{assignVar 'responsiveLoading' 'lazy'}}
+{{else}}
+{{assignVar 'responsiveLoading' 'auto'}}
+{{/if}}
+
+{{#if placeholder}}
+{{assignVar 'responsivePlaceholder' placeholder}}
+{{else if (getVar 'lazyloadmode') '===' 'lazyload+lqip'}}
+{{assignVar 'responsivePlaceholder' 'lqip'}}
+{{else}}
+{{assignVar 'responsivePlaceholder' 'auto'}}
+{{/if}}
+
+{{#all (if (getVar 'responsivePlaceholder') '===' 'lqip') (if fetchpriority '===' 'high') (if image)}}
+<link rel="preload" as="image" href="{{getImageSrcset image 1x=(default lqip_size '80w')}}" fetchpriority="high">
+{{/all}}
+
+<img {{#if image}}
+     src="{{getImageSrcset image 1x=(default fallback_size '160w')}}" alt="{{image.alt}}"
+     {{#if fetchpriority}} fetchpriority="{{fetchpriority}}" {{/if}}
+     {{#if (getVar 'responsiveLoading') '===' 'lazy'}}
+     loading="lazy"
+     {{#if lazysizes '!==' 'disabled'}}
+     data-sizes="auto"
+     srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+     {{#if (getVar 'responsive1x') '!==' '-'}}
+     data-srcset="{{getImageSrcset image 1x=(getVar 'responsive1x')}}"
+     {{else}}
+     data-srcset="{{getImageSrcset image use_default_sizes=true}}" {{#if sizes}} sizes="{{sizes}}" {{/if}}
+     {{/if}}
+     {{/if}}
+     {{else}}
+     {{#if (getVar 'responsiveLoading') '!==' 'auto'}}
+     loading="{{getVar 'responsiveLoading'}}"
+     {{/if}}
+     {{#if (getVar 'responsive1x') '!==' '-'}}
+     srcset="{{getImageSrcset image 1x=(getVar 'responsive1x')}}"
+     {{else}}
+     srcset="{{getImageSrcset image use_default_sizes=true }}" {{#if sizes}} sizes="{{sizes}}" {{/if}}
+     {{/if}}
+     {{/if}}
+     class="responsive-img{{#if class}} {{class}}{{/if}} lazysizes-{{default lazysizes 'auto'}}{{#if (getVar 'responsiveLoading') '===' 'lazy'}} loading-lazy{{#if lazysizes '!==' 'disabled' }} lazyload{{/if}}{{else}} loading-{{getVar 'responsiveLoading'}}{{/if}}{{#if (getVar 'responsivePlaceholder') '===' 'lqip'}} placeholder-lqip" style="background-image: url('{{getImageSrcset image 1x=(default lqip_size '80w')}}')" {{else}} placeholder-auto"{{/if}}
+     {{else if default_image}}
+     src="{{cdn default_image}}"
+     alt="{{lang 'products.card_default_image_alt'}}"
+     class="responsive-img loading-auto placeholder-auto default-image{{#if class}} {{class}}{{/if}}"
+     {{#if (getVar 'responsiveLoading') '!==' 'auto'}}
+     loading="{{getVar 'responsiveLoading'}}"
+     {{/if}}
+     {{else}}
+     src="https://placehold.co/600x400/EEE/31343C"
+     alt=""
+     class="responsive-img loading-auto placeholder-auto no-image{{#if class}} {{class}}{{/if}}"
+     {{/if}}
+     {{otherAttributes}} />

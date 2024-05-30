@@ -1,0 +1,17 @@
+// =============================================================================
+// PRICE (CSS)
+// =============================================================================
+
+.price--rrp,
+.price--non-sale,
+.price--discounted {
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.50);
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration-thickness: 1px;
+}
+
+.price-section--minor {
+    color: color("greys", "light");
+}

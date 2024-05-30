@@ -1,0 +1,36 @@
+<a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>
+{{#if banners.top}}
+<div class="banners" data-banner-location="top">
+    {{#each (limit banners.top_metadata 1)}}
+    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+        <div data-event-type="promotion-click">
+            {{{this.content}}}
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+<header class="header" role="banner">
+    <div class="topbarcontent">
+        {{{region name="header_topbar_widget_area--global"}}}
+    </div>
+    <!-- <div class="top-bar">
+        <div class="promocaption promo-text"><p>12 Days of Christmas | Day 9 | 20% Off Northwave Shoes!  /  Our new product is launching in <span class="launch-time" ></span>  and book your orders TODAY!</p></div>
+    </div> -->
+    <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+        <span class="mobileMenu-toggleIcon">Toggle menu</span>
+    </a>
+    {{> components/common/navigation}}
+    <div class="mobile-quicksearch" id="quickSearch" aria-hidden="false" data-prevent-quick-search-close>
+        {{> components/common/quick-search name='nav-quick-search'}}
+    </div>
+    <div class="navPages-container" id="menu" data-menu>
+        {{> components/common/navigation-menu}}
+        <!-- <section class="quickSearchResults" data-bind="html: results"></section> -->
+        <p role="status"
+        aria-live="polite"
+        class="aria-description--hidden"
+        data-search-aria-message-predefined-text="{{{lang 'search.results.quick_count_live'}}}"
+        ></p>
+    </div>
+</header>

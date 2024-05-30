@@ -1,0 +1,252 @@
+<ul class="navPages-list navItems nav-desk">
+        <li class="navPages-item">
+            <a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}}" href="/brands" data-collapsible="navPages-brands">brands</a>
+            <div class="navPage-subMenu" id="navPages-brands" aria-hidden="true" tabindex="-1">
+                <div class="mega-menu" data-brands>
+                    <ul class="navPage-subMenu-list l2-container brand-l2">
+                        {{{region name="brand_first_column"}}}
+                        <div class="level-one-title">
+                            <h4>Shop Our Most Popular Brands</h4>
+                        </div>
+                        
+                        <div class="brands-logo-container">
+                            <div class="logo-container">
+                                <img src="https://placehold.co/139x78/f6f6f6/000000" alt="">
+                            </div>
+                            <div class="logo-container">
+                                <img src="https://placehold.co/139x78/f6f6f6/000000" alt="">
+                            </div>
+                            <div class="logo-container">
+                                <img src="https://placehold.co/139x78/f6f6f6/000000" alt="">
+                            </div>
+                            <div class="logo-container">
+                                <img src="https://placehold.co/139x78/f6f6f6/000000" alt="">
+                            </div>
+                            <div class="logo-container">
+                                <img src="https://placehold.co/139x78/f6f6f6/000000" alt="">
+                            </div>
+                            <div class="logo-container">
+                                <a class="navPage-childList-action navPages-action" href="#">View All Brands</a>
+                            </div>
+                        </div>
+                        <div class="view-all-btn">
+                            <a href="#">View All Brands</a>
+                        </div>
+                    </ul>
+                    <div class="l3-container">
+                        {{{region name="brand_second_column"}}}
+                        <div class="level-two-title">
+                            <h4>A-Z Brands</h4>
+                        </div>
+                        <ul class="navPage-childList" id="navPages-brands">
+                            <li class="navPage-childList-item">
+                                <a class="navPage-childList-action navPages-action"
+                                href="#"
+                                aria-label=""
+                                >
+                                Lorem ipsum dolor
+                                </a>
+                            </li>
+                            <li class="navPage-childList-item">
+                                <a class="navPage-childList-action navPages-action"
+                                href="#"
+                                aria-label=""
+                                >
+                                Lorem ipsum dolor
+                                </a>
+                            </li>
+                            <li class="navPage-childList-item">
+                                <a class="navPage-childList-action navPages-action"
+                                href="#"
+                                aria-label=""
+                                >
+                                Lorem ipsum dolor
+                                </a>
+                            </li>
+                            <li class="navPage-childList-item">
+                                <a class="navPage-childList-action navPages-action"
+                                href="#"
+                                aria-label=""
+                                >
+                                Lorem ipsum dolor
+                                </a>
+                            </li>
+                            <li class="navPage-childList-item">
+                                <a class="navPage-childList-action navPages-action"
+                                href="#"
+                                aria-label=""
+                                >
+                                Lorem ipsum dolor
+                                </a>
+                            </li>
+                            <li class="navPage-childList-item">
+                                <a class="navPage-childList-action navPages-action"
+                                href="#"
+                                aria-label=""
+                                >
+                                Lorem ipsum dolor
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="adContainer">
+                        <div data-content-region="ad_space"></div>
+                        <img src="{{cdn '/assets/img/header/ad.png'}}" alt="" class="normalloaded">
+                    </div>
+                </div>
+            </div>
+        </li>
+    {{#each categories}}
+        <li class="navPages-item">
+            {{#if children}}
+            <a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
+            href="{{url}}"
+            data-collapsible="navPages-{{id}}"
+            >
+                {{name}}
+                <i class="icon navPages-action-moreIcon" aria-hidden="true">
+                    <svg><use xlink:href="#icon-chevron-down" /></svg>
+                </i>
+            </a>
+            <div class="navPage-subMenu" id="navPages-{{id}}" aria-hidden="true" tabindex="-1">
+                <div class="mega-menu">
+                    <ul class="navPage-subMenu-list l2-container">
+
+                        {{#each children}}
+                            <li class="navPage-subMenu-item" id="navPages-{{id}}">
+                                {{#if children}}
+                                    <a class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
+                                    href="{{url}}"
+                                    aria-label="{{name}}"
+                                    >
+                                        {{name}}
+
+                                    <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.63745 1.6001L6.69995 6.6626L1.63745 11.7251" stroke="black" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    </a>
+                                    <p class="line"></p>
+                                {{else}}
+                                    <a class="navPage-subMenu-action l2nosubMenu navPages-action{{#if is_active}} activePage{{/if}}"
+                                    href="{{url}}"
+                                    aria-label="{{name}}"
+                                    >
+                                        {{name}}
+                                        <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1.63745 1.6001L6.69995 6.6626L1.63745 11.7251" stroke="black" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                    <p class="line"></p>
+                                {{/if}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                    <div class="l3-container">
+                        {{#each children}}
+                        <ul class="navPage-childList" id="navPages-{{id}}">
+                            {{#each children}}
+                            <li class="navPage-childList-item">
+                                <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}"
+                                href="{{url}}"
+                                aria-label="{{name}}"
+                                >
+                                {{#if image}} 
+                                    <img class="l3-cat-img" src="{{getImageSrcset image 1x='22x22'}}" alt="{{image.alt}}">
+                                {{else}}
+                                    <img class="l3-cat-img" src="{{cdn '/assets/img/header/cat-icon.png'}}" alt="cat-icon">
+                                {{/if}} {{name}}
+                                </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                        {{/each}}
+                    </div>
+                    <div class="adContainer">
+                        {{{region name="ad_space"}}}
+                        <img src="{{cdn '/assets/img/header/ad.png'}}" alt="">
+                    </div>
+                </div>
+            </div>
+            {{else}}
+                <a class="navPages-action{{#if is_active}} activePage{{/if}}"
+            href="{{url}}"
+            aria-label="{{name}}"
+                >
+                    {{name}}
+                </a>
+                <i class="icon navPages-action-moreIcon" aria-hidden="true">
+                    <svg><use xlink:href="#icon-chevron-down" /></svg>
+                </i>
+            {{/if}}
+        </li>
+    {{/each}}
+</ul>
+<ul class="navPages-list navItems nav-mob">
+    <li class="navPages-item">
+        <a class="navPages-action brands" href="#" aria-label="brands">brands
+            <!-- <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.63745 1.6001L6.69995 6.6626L1.63745 11.7251" stroke="black" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg> -->
+    </a>
+    </li>
+
+    <div class="first-level">
+        {{#each categories}}
+            <li class="navPages-item">
+                <a class="navPages-action" href="{{#if children}}#{{else}}{{url}}{{/if}}" aria-label="{{name}}" {{#if children}}data-level-id="#menu{{id}}"{{/if}}>{{name}}
+                    <!-- <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.63745 1.6001L6.69995 6.6626L1.63745 11.7251" stroke="black" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg> -->
+                </a>
+            </li>
+        {{/each}}
+    </div>
+
+    {{#each categories}}
+        {{#if children}}
+            <div class="second-level" id="menu{{id}}">
+                <li class="navPages-item">
+                    <a class="back-btn" href="#" data-level-id="#menu{{id}}">
+                     {{name}}
+                    </a>
+                </li>
+                {{#each children}}
+                    <li class="navPages-item">
+                        <a class="navPages-action" href="{{#if children}}#{{else}}{{url}}{{/if}}" aria-label="{{name}}" {{#if children}}data-level-id="#menu{{id}}"{{/if}}>{{name}}
+                            <!-- <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.63745 1.6001L6.69995 6.6626L1.63745 11.7251" stroke="black" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg> -->
+                        </a>
+                    </li>
+                {{/each}}
+            </div>
+        {{/if}}
+    {{/each}}
+
+
+        {{#each categories}}
+        {{#each children}}
+        {{#if children}}
+        <div class="third-level" id="menu{{id}}">
+            <li class="navPages-item">
+                <a class="back-btn" href="#" data-level-id="#menu{{id}}">
+                 {{name}}
+                </a>
+                </li>
+            {{#each children}}
+                <li class="navPages-item">
+                    <a class="navPages-action" href="{{url}}" aria-label="{{name}}">
+                        {{#if image}} 
+                             <img class="l3-cat-img" src="{{getImageSrcset image 1x='22x22'}}" alt="{{image.alt}}">
+                        {{else}}
+                            <img class="l3-cat-img" src="{{cdn '/assets/img/header/cat-icon.png'}}" alt="cat-icon">
+                        {{/if}} {{name}}
+                    </a>
+                </li>
+            {{/each}}
+        </div>
+        {{/if}}
+        {{/each}}
+        {{/each}}
+
+</ul>

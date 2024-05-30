@@ -1,0 +1,87 @@
+{{#if banners.bottom}}
+    {{#if settings.data_tag_enabled}}
+        <div class="banners" data-banner-location="bottom">
+            {{#each (limit banners.bottom_metadata 1)}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <div class="banners" data-banner-location="bottom">
+            <div class="banner">
+                {{{limit banners.bottom 1}}}
+            </div>
+        </div>
+    {{/if}}
+
+{{/if}}
+<footer class="footer" role="contentinfo">
+    <h2 class="footer-title-sr-only">{{lang 'footer.title'}}</h2>
+    <div class="container fullwidth-container">
+        {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
+            <article class="footer-info-col
+                footer-info-col--social
+                footer-info-col--{{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}left{{else}}right{{/if}}"
+                data-section-type="footer-webPages">
+                    <h3 class="footer-info-heading">{{lang 'social.connect'}}</h3>
+                    {{> components/common/social-links}}
+            </article>
+        {{/if}}
+        <section class="footer-info">
+          
+            <article class="footer-info-col" data-section-type="newsletterSubscription" style="margin-bottom: 0;">
+                <div class="footer-col-one">
+                    {{{region name="footer_bc--global"}}}
+                    {{#if settings.show_newsletter_box}}
+                        {{> components/common/subscription-form}}
+                    {{/if}}
+                    <div class="social-icons">
+                        <a href="#"><img src="{{cdn 'assets/img/social-icons/facebook.svg'}}" alt="facebook"></a>
+                        <a href="#"><img src="{{cdn 'assets/img/social-icons/instagram.svg'}}" alt="instagram"></a>
+                        <a href="#"><img src="{{cdn 'assets/img/social-icons/youtube.svg'}}" alt="youtube"></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="footer-info-col" data-section-type="footer-webPages-col2">
+                {{{region name="footer_bc_col_two--global"}}}
+            </article>
+
+            <article class="footer-info-col" data-section-type="footer-webPages-col3">
+                {{{region name="footer_bc_col_three--global"}}}
+            </article>
+
+          
+ 
+        </section>
+
+        <hr class="footer-bottom-line" style="border-top: 1px solid #ffffff;margin-top: 0;">
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <img src="{{cdn 'assets/img/payment-method/mastercard.svg'}}" alt="mastercard">
+                <img src="{{cdn 'assets/img/payment-method/visa.svg'}}" alt="visa">
+                <img src="{{cdn 'assets/img/payment-method/afterpay.svg'}}" alt="afterpay">
+                <img src="{{cdn 'assets/img/payment-method/paypal.svg'}}" alt="paypal">
+                <img src="{{cdn 'assets/img/payment-method/zip.svg'}}" alt="zip">
+            </div>
+            <div class="footer-copyright">
+                <p class="powered-by">&copy; {{settings.store_name}} {{moment format="YYYY"}}</p>
+            </div>
+        </div>
+
+        {{#if settings.paypal_commerce_credit_message}}
+        <div class="footer-copyright">
+            <p class="paypal-credit">{{nl2br settings.paypal_commerce_credit_message}}</p>
+        </div>
+        {{/if}}
+        {{#if theme_settings.show_powered_by}}
+            <div class="footer-copyright">
+                <p class="powered-by">{{lang 'footer.powered_by'}} <a href="https://www.bigcommerce.com?utm_source=merchant&utm_medium=poweredbyBC" rel="nofollow">BigCommerce</a></p>
+            </div>
+        {{/if}}
+    </div>
+    {{{region name="ssl_site_seal--global"}}}
+</footer>
